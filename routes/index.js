@@ -3,6 +3,7 @@ var router = express.Router();
 const asyncHandler = require('express-async-handler');
 const passport = require('passport');
 const User = require('../models/User');
+const Message = require('../models/Message')
 const { body, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 
@@ -41,7 +42,7 @@ router.post("/sign-up", [
     const user = new User({
       username: req.body.username,
       password: hashedPassword,
-      isMember: false,
+      isMember: true,
       isAdmin: req.body.isAdmin === 'checked'
     });
 
@@ -67,7 +68,7 @@ router.post("/log-in", asyncHandler(async (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
-      return res.redirect("/sign-up");
+      return res.redirect("/");
     });
   })(req, res, next);
 }));
@@ -76,6 +77,7 @@ router.post("/log-in", asyncHandler(async (req, res, next) => {
 router.get("/", asyncHandler(async (req, res, next) => {
   res.render("index", { user: req.user });
 }));
+
 
 // Обработка выхода
 router.get("/log-out", asyncHandler(async (req, res, next) => {
@@ -86,5 +88,7 @@ router.get("/log-out", asyncHandler(async (req, res, next) => {
     res.redirect("/");
   });
 }));
+
+
 
 module.exports = router;

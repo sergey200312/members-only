@@ -4,14 +4,18 @@ html(lang="en")
     meta(charset="UTF-8")
     title
   body
-    if user
-      h1 WELCOME BACK #{user.username}
-      a(href="/log-out") LOG OUT
-    else
-      h1 please log in
+    h1 please log in
       form(action="/log-in" method="POST")
         label(for="username") Username
         input(name="username" placeholder="username" type="text")
         label(for="password") Password
         input(name="password" type="password")
         button Log In
+    if user
+      if user.isMember
+        h1 WELCOME BACK #{user.username}
+        a(href="/log-out") LOG OUT
+      else 
+        p войдите
+    else 
+       p пшол вон
