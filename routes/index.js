@@ -12,15 +12,19 @@ router.get("/sign-up", asyncHandler(async (req, res, next) => {
 
 // Обработка регистрации
 router.post("/sign-up", [
-  body("username")
+  body("username", "username length must be at least 4")
     .trim()
     .isLength({ min: 4 })
-    .withMessage("username length must be at least 4")
     .escape(),
-  body("password")
+  body("password","the password must be at least 4 characters long" )
     .trim()
     .isLength({ min: 4 })
-    .withMessage("the password must be at least 4 characters long")
+    .escape(),
+  body("re-password", "Password does not match")
+    .custom((value, {req}) => {
+      return value === req.body.password
+    })
+    .trim()
     .escape(),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);

@@ -7,9 +7,12 @@ html(lang="en")
     h1 Sign Up
     form(action="" method="POST")
       label(for="username") Username
-      input(name="username" placeholder="username" type="text" value=(undefined === user.username? user.username : ''))
+      input(name="username" placeholder="username" type="text" value="")
       label(for="password") Password
-      input(name="password" type="password" value=(undefined === user.password? user.password : ''))
+      input(name="password" type="password" value="")
+      label(for='re-password') Confirm password
+      input(name='re-password' type="password" value="")
+
       button Sign Up 
 
     if errors
