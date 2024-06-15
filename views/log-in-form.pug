@@ -6,7 +6,3 @@ form(action="/log-in" method="POST")
   input(name="password" type="password")
   button Log In
 
-  if errors
-    ul 
-      each error in errors 
-        li #{error.msg}

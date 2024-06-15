@@ -28,12 +28,12 @@ router.post("/sign-up", [
     const user = new User({
       username: req.body.username,
       password: req.body.password,
-      isMember,
-      isAdmin,
+      isMember: false,
+      isAdmin: false,
     });
 
     if(!errors.isEmpty()) {
-      res.render("log-in-form", {
+      res.render("sign-up-form", {
         user: user,
         errors: errors.array(),
       })
