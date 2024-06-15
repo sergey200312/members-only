@@ -8,11 +8,10 @@ exports.sign_up_get = asyncHandler(async(req, res, next) => {
 })
 
 exports.sign_up_post = asyncHandler(async(req, res, next) => {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
     try {
         const user = new User({
           username: req.body.username,
-          password: hashedPassword
+          password: req.body.password
         });
         const result = await user.save();
         res.redirect("/");
