@@ -11,11 +11,18 @@ html(lang="en")
         label(for="password") Password
         input(name="password" type="password")
         button Log In
-    if user
-      if user.isMember
-        h1 WELCOME BACK #{user.username}
-        a(href="/log-out") LOG OUT
+      if listMsg 
+        each msg in listMsg 
+          p #{msg.content} 
+          p #{user? user.username : '######'}
+          p #{user? msg.date : '######'}
       else 
-        p войдите
-    else 
-       p пшол вон
+        p СООБЩЕНИЙ ПОКА НЕТ! 
+    //- if user
+    //-   if user.isMember
+    //-     h1 WELCOME BACK #{user.username}
+    //-     a(href="/log-out") LOG OUT
+    //-   else 
+    //-     p войдите
+    //- else 
+    //-    p пшол вон

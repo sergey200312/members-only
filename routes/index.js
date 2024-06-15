@@ -75,7 +75,8 @@ router.post("/log-in", asyncHandler(async (req, res, next) => {
 
 // Отображение главной страницы
 router.get("/", asyncHandler(async (req, res, next) => {
-  res.render("index", { user: req.user });
+  const listMessages = await Message.find().sort({date: 1}).populate('user').exec();
+  res.render("index", { user: req.user, listMsg: listMessages });
 }));
 
 
