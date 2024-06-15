@@ -12,10 +12,17 @@ router.get("/sign-up", asyncHandler(async (req, res, next) => {
 
 // Обработка регистрации
 router.post("/sign-up", [
-  body("username", "username length must be at least 4")
+  body("username")
     .trim()
     .isLength({ min: 4 })
-    .escape(),
+    .withMessage("username length must be at least 4")
+    .escape()
+    .custom(async (username) => {
+      const checkusername = User.findOne(username).exec()
+      if(checkusername) {
+          throw new Error("This username is already occupied, come up with another one")
+      }
+    }),
   body("password","the password must be at least 4 characters long" )
     .trim()
     .isLength({ min: 4 })
@@ -27,6 +34,7 @@ router.post("/sign-up", [
     .trim()
     .escape(),
   asyncHandler(async (req, res, next) => {
+
     const errors = validationResult(req);
 
     const user = new User({
