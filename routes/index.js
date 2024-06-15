@@ -36,12 +36,13 @@ router.post("/sign-up", [
   asyncHandler(async (req, res, next) => {
 
     const errors = validationResult(req);
-
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-      isMember: false,
-      isAdmin: req.body.isAdmin === 'checked'
+    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+      const user = new User({
+        username: req.body.username,
+        password: hashedPassword,
+        isMember: false,
+        isAdmin: req.body.isAdmin === 'checked'
+      });
     });
 
     if (!errors.isEmpty()) {
