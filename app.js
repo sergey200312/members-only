@@ -46,10 +46,10 @@ passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user = await User.findOne({ username: username });
     if (!user) {
-      return done(null, false, { message: "Неправильное имя пользователя" });
+      return done(null, false, { message: "incorrect username" });
     }
     if (user.password !== password) {
-      return done(null, false, { message: "Неправильный пароль" });
+      return done(null, false, { message: "incorrect password" });
     }
     return done(null, user);
   } catch (err) {

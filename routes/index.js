@@ -19,16 +19,16 @@ router.post("/sign-up", [
     .escape()
     .custom(async (username) => {
       const checkusername = User.findOne(username).exec()
-      if(checkusername) {
-          throw new Error("This username is already occupied, come up with another one")
+      if (checkusername) {
+        throw new Error("This username is already occupied, come up with another one")
       }
     }),
-  body("password","the password must be at least 4 characters long" )
+  body("password", "the password must be at least 4 characters long")
     .trim()
     .isLength({ min: 4 })
     .escape(),
   body("re-password", "Password does not match")
-    .custom((value, {req}) => {
+    .custom((value, { req }) => {
       return value === req.body.password
     })
     .trim()
@@ -44,7 +44,7 @@ router.post("/sign-up", [
       isAdmin: req.body.isAdmin === 'checked'
     });
 
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
       res.render("sign-up-form", {
         user: user,
         errors: errors.array(),
@@ -53,14 +53,22 @@ router.post("/sign-up", [
       await user.save();
       res.redirect('/');
     }
-    
+
   })]);
 
 
 // Обработка входа
-router.post("/log-in", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/",
+router.post("/log-in", asyncHandler(async (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) { return next(err); }
+    if (!user) {
+      return res.render("log-in-form", { error: info.message });
+    }
+    req.logIn(user, (err) => {
+      if (err) { return next(err); }
+      return res.redirect("/sign-up");
+    });
+  })(req, res, next);
 }));
 
 // Отображение главной страницы
