@@ -4,6 +4,7 @@ const asyncHandler = require('express-async-handler');
 const passport = require('passport');
 const User = require('../models/User');
 const { body, validationResult } = require("express-validator");
+const bcrypt = require('bcryptjs');
 
 // Отображение формы регистрации
 router.get("/sign-up", asyncHandler(async (req, res, next) => {
@@ -18,7 +19,7 @@ router.post("/sign-up", [
     .withMessage("username length must be at least 4")
     .escape()
     .custom(async (username) => {
-      const checkusername = User.findOne(username).exec()
+      const checkusername = await User.findOne({username}).exec()
       if (checkusername) {
         throw new Error("This username is already occupied, come up with another one")
       }
@@ -28,7 +29,7 @@ router.post("/sign-up", [
     .isLength({ min: 4 })
     .escape(),
   body("re-password", "Password does not match")
-    .custom((value, { req }) => {
+    .custom(async(value, { req }) => {
       return value === req.body.password
     })
     .trim()
