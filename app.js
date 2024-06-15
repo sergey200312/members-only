@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const indexRouter = require('./routes/index');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
+const bcrypt = require('bcryptjs');
 
 var app = express();
 
@@ -48,7 +49,8 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     if (!user) {
       return done(null, false, { message: "incorrect username" });
     }
-    if (user.password !== password) {
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
       return done(null, false, { message: "incorrect password" });
     }
     return done(null, user);
