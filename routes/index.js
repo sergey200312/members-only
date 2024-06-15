@@ -33,7 +33,7 @@ router.post("/sign-up", [
       username: req.body.username,
       password: req.body.password,
       isMember: false,
-      isAdmin: false,
+      isAdmin: req.body.isAdmin === 'checked'
     });
 
     if(!errors.isEmpty()) {
