@@ -3,6 +3,7 @@ var router = express.Router();
 const asyncHandler = require('express-async-handler');
 const passport = require('passport');
 const User = require('../models/User');
+const { body, validationResult } = require("express-validator");
 
 // Отображение формы регистрации
 router.get("/sign-up", asyncHandler(async (req, res, next) => {
@@ -10,18 +11,39 @@ router.get("/sign-up", asyncHandler(async (req, res, next) => {
 }));
 
 // Обработка регистрации
-router.post("/sign-up", asyncHandler(async (req, res, next) => {
-  try {
+router.post("/sign-up", [
+  body("username")
+    .trim()
+    .isLength({ min: 4 })
+    .withMessage("username length must be at least 4")
+    .escape(),
+  body("password")
+    .trim()
+    .isLength({ min: 4 })
+    .withMessage("the password must be at least 4 characters long")
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
     const user = new User({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      isMember,
+      isAdmin,
     });
-    const result = await user.save();
-    res.redirect("/");
-  } catch (err) {
-    return next(err);
-  }
-}));
+
+    if(!errors.isEmpty()) {
+      res.render("log-in-form", {
+        user: user,
+        errors: errors.array(),
+      })
+    } else {
+      await user.save();
+      res.redirect('/');
+    }
+    
+  })]);
+
 
 // Обработка входа
 router.post("/log-in", passport.authenticate("local", {
