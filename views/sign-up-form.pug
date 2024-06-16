@@ -1,24 +1,22 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    title 
-  body
-    h1 Sign Up
-    form(action="" method="POST")
-      label(for="username") Username
-      input(name="username" placeholder="username" type="text" value="")
-      label(for="password") Password
-      input(name="password" type="password" value="")
-      label(for='re-password') Confirm password
-      input(name='re-password' type="password" value="")
-      label(for="isAdmin") Admin?
-      input(type="checkbox" name="isAdmin" value="checked")
+extends layout 
 
-      button Sign Up 
+block content 
 
-    if errors
-      ul 
-        each error in errors 
-          li #{error.msg}
+  h1 Sign Up
+  form(action="" method="POST")
+    label(for="username") Username
+    input(name="username" placeholder="username" type="text" value="")
+    label(for="password") Password
+    input(name="password" type="password" value="")
+    label(for='re-password') Confirm password
+    input(name='re-password' type="password" value="")
+    label(for="isAdmin") Admin?
+    input(type="checkbox" name="isAdmin" value="checked")
+
+    button Sign Up 
+
+  if errors
+    ul 
+      each error in errors 
+        li #{error.msg}
  

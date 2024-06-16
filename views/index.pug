@@ -1,25 +1,15 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    title
-  body
-    if user 
-      a(href='/log-out')
-        button log-out 
-    else
-      a(href='/log-in')
-      button log-in
-      a(href='/sign-up')
-      button sign-up
-      
-    if listMsg 
-      each msg in listMsg 
-        p #{msg.content} 
-        p #{user? user.username : '######'}
-        p #{user? msg.date : '######'}
-    else 
-      p СООБЩЕНИЙ ПОКА НЕТ! 
+extends layout 
+
+block content
+
+
+  if listMsg 
+     each msg in listMsg 
+      p #{msg.content} 
+      p #{user? user.username : '######'}
+      p #{user? msg.date : '######'}
+  else 
+    p СООБЩЕНИЙ ПОКА НЕТ! 
     //-if user
     //-   if user.isMember
     //-     h1 WELCOME BACK #{user.username}
