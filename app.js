@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 var app = express();
 
@@ -22,10 +23,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-require('dotenv').config();
+
 
 app.use('/', indexRouter);
 
