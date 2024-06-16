@@ -2,7 +2,9 @@ extends layout
 
 block content
 
-
+  if (user && !user.isMember)
+    a(href='/join')
+        button join club
   if listMsg 
      each msg in listMsg 
       p #{msg.content} 
