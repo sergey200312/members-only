@@ -14,3 +14,7 @@ html
         button sign-up
 
     block content
+    if user
+      if user.isMember 
+        a(href='/create')
+          button create new message
