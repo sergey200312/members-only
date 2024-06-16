@@ -58,6 +58,10 @@ router.post("/sign-up", [
 
   })]);
 
+router.get('/join', asyncHandler(async(req, res, next) => {
+  res.render('join-club-form', {user: req.user});
+}))
+
 router.get('/create', checkMembership, asyncHandler(async(req, res, next) => {
   res.render('create-message-form', {user: req.user});
 }));
