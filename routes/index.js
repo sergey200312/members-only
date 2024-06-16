@@ -62,6 +62,15 @@ router.get('/join', asyncHandler(async(req, res, next) => {
   res.render('join-club-form', {user: req.user});
 }))
 
+router.post('/join', asyncHandler(async(req, res, next) => {
+  if (req.body.code === '1111') {
+    await User.findOneAndUpdate({_id: req.user.id}, {isMember: true});
+    res.redirect('/');
+  } else {
+    res.redirect('/join')
+  }
+}))
+
 router.get('/create', checkMembership, asyncHandler(async(req, res, next) => {
   res.render('create-message-form', {user: req.user});
 }));
