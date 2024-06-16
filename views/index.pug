@@ -10,7 +10,7 @@ block content
       if user.isMember 
         a(href='/create')
           button create new message
-  if listMsg 
+  if listMsg.length > 0 
      each msg in listMsg 
       p #{msg.content} 
       p #{user? user.username : 'unknown'}
@@ -18,8 +18,8 @@ block content
       if (user && user.isAdmin) 
         form(action=`/delete/${msg._id}` method='POST')
           button Delete
-  else 
-    p СООБЩЕНИЙ ПОКА НЕТ! 
+  else
+    p No messages found
     //-if user
     //-   if user.isMember
     //-     h1 WELCOME BACK #{user.username}
