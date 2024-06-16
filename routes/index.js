@@ -7,6 +7,7 @@ const Message = require('../models/Message')
 const { body, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 const checkMembership = require('../middleware/auth')
+require('dotenv').config();
 // Отображение формы регистрации
 router.get("/sign-up", asyncHandler(async (req, res, next) => {
   res.render("sign-up-form");
@@ -63,7 +64,7 @@ router.get('/join', asyncHandler(async(req, res, next) => {
 }))
 
 router.post('/join', asyncHandler(async(req, res, next) => {
-  if (req.body.code === '1111') {
+  if (req.body.code === process.env.CODE) {
     await User.findOneAndUpdate({_id: req.user.id}, {isMember: true});
     res.redirect('/');
   } else {
