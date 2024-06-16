@@ -5,6 +5,11 @@ block content
   if (user && !user.isMember)
     a(href='/join')
         button join club
+        
+  if user
+      if user.isMember 
+        a(href='/create')
+          button create new message
   if listMsg 
      each msg in listMsg 
       p #{msg.content} 
