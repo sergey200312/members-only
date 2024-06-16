@@ -6,8 +6,8 @@ block content
   if listMsg 
      each msg in listMsg 
       p #{msg.content} 
-      p #{user? user.username : '######'}
-      p #{user? msg.date : '######'}
+      p #{user? user.username : 'unknown'}
+      p #{user? msg.date : 'unknown'}
   else 
     p СООБЩЕНИЙ ПОКА НЕТ! 
     //-if user
