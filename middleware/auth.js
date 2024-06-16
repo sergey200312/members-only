@@ -5,3 +5,5 @@ const checkMembership = (req, res, next) => {
         res.redirect('/')
     }
 }
+
+module.exports = checkMembership;
