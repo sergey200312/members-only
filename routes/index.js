@@ -6,7 +6,7 @@ const User = require('../models/User');
 const Message = require('../models/Message')
 const { body, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
-
+const checkMembership = require('../middleware/auth')
 // Отображение формы регистрации
 router.get("/sign-up", asyncHandler(async (req, res, next) => {
   res.render("sign-up-form");
@@ -57,6 +57,10 @@ router.post("/sign-up", [
     }
 
   })]);
+
+router.get('/create', checkMembership, asyncHandler(async(req, res, next) => {
+  res.render('create-message-form', {user: req.user});
+}));
 
 router.get('/log-in', asyncHandler(async (req, res, next) => {
   res.render('log-in-form', {user: req.user});
