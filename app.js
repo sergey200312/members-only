@@ -25,11 +25,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+require('dotenv').config();
 
 app.use('/', indexRouter);
 
 // Подключение к MongoDB
-const mongoDB = 'mongodb+srv://admin:admin@cluster0.64wpmrj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const mongoDB = process.env.MONGODB_URL
 mongoose.set("strictQuery", false);
 
 async function main() {
