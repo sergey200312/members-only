@@ -4,21 +4,23 @@ html(lang="en")
     meta(charset="UTF-8")
     title
   body
-    h1 please log in
-      form(action="/log-in" method="POST")
-        label(for="username") Username
-        input(name="username" placeholder="username" type="text")
-        label(for="password") Password
-        input(name="password" type="password")
-        button Log In
-      if listMsg 
-        each msg in listMsg 
-          p #{msg.content} 
-          p #{user? user.username : '######'}
-          p #{user? msg.date : '######'}
-      else 
-        p СООБЩЕНИЙ ПОКА НЕТ! 
-    //- if user
+    if user 
+      a(href='/log-out')
+        button log-out 
+    else
+      a(href='/log-in')
+      button log-in
+      a(href='/sign-up')
+      button sign-up
+      
+    if listMsg 
+      each msg in listMsg 
+        p #{msg.content} 
+        p #{user? user.username : '######'}
+        p #{user? msg.date : '######'}
+    else 
+      p СООБЩЕНИЙ ПОКА НЕТ! 
+    //-if user
     //-   if user.isMember
     //-     h1 WELCOME BACK #{user.username}
     //-     a(href="/log-out") LOG OUT

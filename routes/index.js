@@ -58,7 +58,9 @@ router.post("/sign-up", [
 
   })]);
 
-
+router.get('/log-in', asyncHandler(async (req, res, next) => {
+  res.render('log-in-form', {user: req.user});
+}));
 // Обработка входа
 router.post("/log-in", asyncHandler(async (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
