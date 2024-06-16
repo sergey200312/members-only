@@ -42,7 +42,7 @@ router.post("/sign-up", [
     const user = new User({
       username: req.body.username,
       password: hashedPassword,
-      isMember: true,
+      isMember: false,
       isAdmin: req.body.isAdmin === 'checked'
     });
 
@@ -61,6 +61,32 @@ router.post("/sign-up", [
 router.get('/create', checkMembership, asyncHandler(async(req, res, next) => {
   res.render('create-message-form', {user: req.user});
 }));
+
+router.post('/create', [
+  body('message', "The message should not be empty")
+      .trim()
+      .isLength({min: 1})
+      .escape(),
+  asyncHandler(async(req, res, next) => {
+      const errors = validationResult(req);
+
+      const newMessage = new Message({
+        content: req.body.message,
+        user: req.user._id,
+        date: new Date(),
+      })
+
+      if(!errors.isEmpty()) {
+        res.render('create-message-form', {
+          user: req.user,
+          errors: errors.array(),
+        })
+      } 
+      else {
+        await newMessage.save();
+        res.redirect('/');
+      }
+})])
 
 router.get('/log-in', asyncHandler(async (req, res, next) => {
   res.render('log-in-form', {user: req.user});
