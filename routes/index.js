@@ -7,6 +7,7 @@ const Message = require('../models/Message')
 const { body, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 const checkMembership = require('../middleware/auth')
+const mongoose = require('mongoose')
 require('dotenv').config();
 // Отображение формы регистрации
 router.get("/sign-up", asyncHandler(async (req, res, next) => {
@@ -118,6 +119,11 @@ router.post("/log-in", asyncHandler(async (req, res, next) => {
     });
   })(req, res, next);
 }));
+
+router.post("/delete/:id", asyncHandler(async(req, res, next) => {
+  await Message.findByIdAndDelete(req.params.id).exec();
+  res.redirect('/')
+}))
 
 // Отображение главной страницы
 router.get("/", asyncHandler(async (req, res, next) => {
