@@ -6,4 +6,10 @@ block content
     label(for='message') Message:
     textarea(name='message' placeholder='Message' type='text' value='')
     button create message
+
+  if errors 
+    ul
+      each error in errors 
+        li #{error.msg}
+      
     
