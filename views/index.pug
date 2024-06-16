@@ -16,7 +16,7 @@ block content
       p #{user? user.username : 'unknown'}
       p #{user? msg.formattedDate : 'unknown'}
       if (user && user.isAdmin) 
-        form(action='/delete/${msg._id}' method='POST')
+        form(action=`/delete/${msg._id}` method='POST')
           button Delete
   else 
     p СООБЩЕНИЙ ПОКА НЕТ! 
