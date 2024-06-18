@@ -19,27 +19,36 @@ router.post("/sign-up", [
   body("username")
     .trim()
     .isLength({ min: 4 })
-    .withMessage("username length must be at least 4")
+    .withMessage("Username length must be at least 4")
     .escape()
     .custom(async (username) => {
-      const checkusername = await User.findOne({username}).exec()
-      if (checkusername) {
-        throw new Error("This username is already occupied, come up with another one")
+      const checkUsername = await User.findOne({ username }).exec();
+      if (checkUsername) {
+        throw new Error("This username is already occupied, come up with another one");
       }
     }),
-  body("password", "the password must be at least 4 characters long")
+  body("password", "The password must be at least 4 characters long")
     .trim()
     .isLength({ min: 4 })
     .escape(),
-  body("re-password", "Password does not match")
-    .custom(async(value, { req }) => {
-      return value === req.body.password
+  body("re-password", "Passwords do not match")
+    .custom((value, { req }) => {
+      return value === req.body.password;
     })
     .trim()
     .escape(),
   asyncHandler(async (req, res, next) => {
-
     const errors = validationResult(req);
+
+    
+    if (!errors.isEmpty()) {
+      return res.render("sign-up-form", {
+        user: req.body, 
+        errors: errors.array(),
+      });
+    }
+
+    
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
       username: req.body.username,
@@ -48,17 +57,10 @@ router.post("/sign-up", [
       isAdmin: req.body.isAdmin === 'checked'
     });
 
-    if (!errors.isEmpty()) {
-      res.render("sign-up-form", {
-        user: user,
-        errors: errors.array(),
-      })
-    } else {
-      await user.save();
-      res.redirect('/');
-    }
-
-  })]);
+    await user.save();
+    res.redirect('/'); 
+  })
+]);
 
 router.get('/join', asyncHandler(async(req, res, next) => {
   res.render('join-club-form', {user: req.user});
