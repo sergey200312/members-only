@@ -1,15 +1,14 @@
 extends layout
 
-block content 
-  
-  h1 please log in
-  form(action="/log-in" method="POST")
-    label(for="username") Username
-    input(name="username" placeholder="username" type="text" value="")
-    label(for="password") Password
-    input(name="password" type="password" value="")
-    button Log In
- 
-  if error 
-    p #{error}
+block content
+  .form-container
+    h1 Log In
+    form(action="/log-in" method="POST")
+      label(for="username") Username
+      input(name="username" placeholder="Username" type="text" value="" required)
+      label(for="password") Password
+      input(name="password" type="password" value="" required)
+      button(type="submit") Log In
 
+    if error
+      p= error

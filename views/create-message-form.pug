@@ -3,7 +3,7 @@ extends layout
 block content
   form(post='/create' method='POST' class='form-container')
     label(for='message') Message:
-    textarea(name='message' placeholder='Message' type='text' value='')
+    textarea(name='message' placeholder='Message' type='text' value='' required)
     button.create-message Create Message
 
   if errors

@@ -10,7 +10,7 @@ header {
   justify-content: space-between; /* Распределяем элементы внутри flexbox-контейнера таким образом, чтобы они занимали всю доступную ширину с равными промежутками между ними */
   align-items: center; /* Выравниваем элементы по центру по вертикали */
   padding: 10px 20px; /* Внешний отступ внутри шапки */
-  background-color: white; /* Цвет фона */
+  background-color: black; /* Цвет фона */
 }
 
 /* Стили для логотипа */
@@ -22,7 +22,7 @@ header {
 
 .logo a {
   text-decoration: none;
-  color: red
+  color: rgb(116, 69, 187);
 }
 
 /* Стили для навигационной панели */
@@ -38,7 +38,7 @@ nav a {
   margin-left: 10px; /* Внешний отступ слева */
   font-weight: bold; /* Жирный шрифт */
   position: relative;
-  color: black
+  color: rgb(116, 69, 187);
 }
 
 nav a::after {
@@ -56,6 +56,7 @@ nav a::after {
 /* Стили для текстовых ссылок log-in и sign-up при наведении */
 nav a:hover::after {
   transform: scaleX(1); /* Плавно увеличиваем ширину подчеркивания до 100% при наведении */
+  background-color: #4b0082;
 }
 
 /* Стили для кнопок */
@@ -97,11 +98,13 @@ button:hover {
   margin: 0 auto; /* Центрируем контейнер по горизонтали */
   border: 1px solid #ccc; /* Граница контейнера */
   padding: 40px; /* Внутренний отступ контейнера */
+  border-color:#4b0082;
+  border-radius: 20px;
 }
 
 /* Стили для отдельного сообщения */
 .message-item {
-  border-bottom: 1px solid #ddd; /* Горизонтальная граница между сообщениями */
+  border-bottom: 1px solid #6754ba; /* Горизонтальная граница между сообщениями */
   padding: 10px 0; /* Внутренний отступ внутри сообщения */
 }
 
@@ -126,7 +129,6 @@ button:hover {
   text-align: center; /* Центрируем текст внутри формы */
   padding: 100px; /* Внутренний отступ формы */
   border: 1px solid white /* Граница формы */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для формы (опционально) */
 }
 
 .form-container textarea {
@@ -152,5 +154,50 @@ ul {
 ul li {
   margin-bottom: 5px; /* Отступ между элементами списка */
 }
+.form-container {
+  max-width: 400px; /* Максимальная ширина контейнера формы */
+  margin: 100px auto; /* Центрирование формы на странице */
+  padding: 20px; /* Внутренний отступ контейнера формы */
+  background-color: #f5f5f5; /* Цвет фона формы */
+  border-radius: 5px; /* Закругление углов формы */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень формы */
+}
+
+.form-container h1 {
+  text-align: center; /* Выравнивание заголовка по центру */
+  margin-bottom: 20px; /* Отступ снизу для заголовка */
+  color: #6a1c9a; /* Цвет текста заголовка */
+}
+
+.form-container label {
+  display: block; /* Делаем метки блочными элементами */
+  margin-bottom: 8px; /* Отступ снизу между метками */
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 100%; /* Ширина полей ввода */
+  padding: 10px; /* Внутренний отступ полей ввода */
+  margin-bottom: 15px; /* Отступ снизу между полями ввода */
+  font-size: 16px; /* Размер шрифта */
+  border: 1px solid #ccc; /* Обводка полей ввода */
+  border-radius: 4px; /* Закругление углов полей ввода */
+}
+
+.form-container button {
+  width: 100%; /* Ширина кнопки */
+  padding: 10px; /* Внутренний отступ кнопки */
+  background-color: #6a1c9a; /* Цвет фона кнопки */
+  color: #fff; /* Цвет текста кнопки */
+  border: none; /* Убираем границу кнопки */
+  border-radius: 4px; /* Закругление углов кнопки */
+  cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+}
+
+.form-container button:hover {
+  background-color: #4b0082; /* Цвет кнопки при наведении */
+}
+
+
 
 
