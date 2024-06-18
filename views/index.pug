@@ -18,11 +18,12 @@ block content
       each msg in listMsg
         div(class='message-item')
           div(class='message-header')
-            p #{user ? user.username : 'Unknown'}
+            p #{user ? msg.user.username : 'Unknown'}
             p #{user ? msg.formattedDate : 'Unknown'}
-          p(style='margin-top: 15px') #{msg.content}
-          if user && user.isAdmin
-            form(action=`/delete/${msg._id}`, method='POST')
-              button.delete-button Delete
+          div(class='message-content')
+            p(style='margin-top: 15px') #{msg.content}
+            if user && user.isAdmin
+              form(action=`/delete/${msg._id}`, method='POST')
+                button.delete-button Delete
     else
       p No messages found

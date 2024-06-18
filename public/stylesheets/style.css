@@ -68,29 +68,6 @@ button {
   cursor: pointer; /* Изменяем курсор при наведении */
 }
 
-/* Стили для кнопок при наведении */
-button:hover {
-  background-color: #0056b3; /* Изменяем цвет фона при наведении */
-}
-
-/* Стили для кнопок и их расположение */
-.button-row {
-  display: flex; /* Используем flexbox для расположения элементов в строку */
-  justify-content: center; /* Центрируем элементы по горизонтали */
-  margin-bottom: 20px; /* Добавляем отступ снизу */
-}
-
-.button-row a {
-  text-decoration: none; /* Убираем подчеркивание у ссылок */
-}
-
-.button-row button {
-  padding: 10px 20px; /* Задаем отступы внутри кнопок */
-  background-color: #007bff; /* Цвет фона кнопок */
-  color: #fff; /* Цвет текста кнопок */
-  border: none; /* Убираем границы кнопок */
-  cursor: pointer; /* Указатель мыши при наведении на кнопку */
-}
 
 /* Стили для контейнера сообщений */
 .message-container {
@@ -113,7 +90,9 @@ button:hover {
 }
 
 .delete-button {
-  background-color: #dc3545; /* Цвет фона кнопки Delete */
+  background-color: #563e94; /* Цвет фона кнопки Delete */
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
 .message-header {
@@ -122,6 +101,7 @@ button:hover {
   align-items: center; /* Выравниваем элементы по вертикали */
   margin-bottom: 5px; /* Отступ между заголовком сообщения и содержимым */
 }
+
 
 .form-container {
   width: 30%; /* Ширина формы */
