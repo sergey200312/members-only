@@ -19,9 +19,10 @@ const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 20,
 });
-app.use(limiter);
 
 var app = express();
+
+app.use(limiter);
 app.use(compression());
 // Настройка шаблонизатора
 app.set('views', path.join(__dirname, 'views'));
