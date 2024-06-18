@@ -62,7 +62,7 @@ nav a:hover::after {
 /* Стили для кнопок */
 button {
   padding: 8px 16px; /* Внутренний отступ кнопки */
-  background-color: #007bff; /* Цвет фона кнопки */
+  background-color: #7a42ba;
   color: #fff; /* Цвет текста */
   border: none; /* Убираем границу */
   cursor: pointer; /* Изменяем курсор при наведении */
@@ -72,7 +72,7 @@ button {
 /* Стили для контейнера сообщений */
 .message-container {
   width: 40%; /* Ширина контейнера сообщений */
-  margin: 0 auto; /* Центрируем контейнер по горизонтали */
+  margin: 40px auto; /* Центрируем контейнер по горизонтали */
   border: 1px solid #ccc; /* Граница контейнера */
   padding: 40px; /* Внутренний отступ контейнера */
   border-color:#4b0082;
@@ -119,7 +119,7 @@ button {
 
 .form-container button.create-message {
   padding: 10px 20px; /* Отступы внутри кнопки */
-  background-color: #007bff; /* Цвет фона кнопки */
+  background-color: #7a42ba; /* Цвет фона кнопки */
   color: #fff; /* Цвет текста кнопки */
   border: none; /* Убираем границы кнопки */
   cursor: pointer; /* Указатель мыши при наведении на кнопку */
@@ -174,9 +174,45 @@ ul li {
   cursor: pointer; /* Изменяем курсор при наведении на кнопку */
 }
 
-.form-container button:hover {
+.form-container button:hover,
+.button-row button:hover,
+.form-join button:hover {
   background-color: #4b0082; /* Цвет кнопки при наведении */
 }
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Установите желаемую высоту контейнера */
+  margin-top: 40px;
+}
+
+.button-row button {
+  border-radius: 20px;
+  background-color: #7a42ba;
+  cursor: pointer;
+}
+
+.form-join {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 50px;
+}
+
+.form-join button{
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.no-messages {
+  text-align: center;
+  font-size: 26px;
+}
+
+
 
 
 
