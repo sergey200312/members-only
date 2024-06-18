@@ -72,3 +72,85 @@ button:hover {
   background-color: #0056b3; /* Изменяем цвет фона при наведении */
 }
 
+/* Стили для кнопок и их расположение */
+.button-row {
+  display: flex; /* Используем flexbox для расположения элементов в строку */
+  justify-content: center; /* Центрируем элементы по горизонтали */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+.button-row a {
+  text-decoration: none; /* Убираем подчеркивание у ссылок */
+}
+
+.button-row button {
+  padding: 10px 20px; /* Задаем отступы внутри кнопок */
+  background-color: #007bff; /* Цвет фона кнопок */
+  color: #fff; /* Цвет текста кнопок */
+  border: none; /* Убираем границы кнопок */
+  cursor: pointer; /* Указатель мыши при наведении на кнопку */
+}
+
+/* Стили для контейнера сообщений */
+.message-container {
+  width: 40%; /* Ширина контейнера сообщений */
+  margin: 0 auto; /* Центрируем контейнер по горизонтали */
+  border: 1px solid #ccc; /* Граница контейнера */
+  padding: 40px; /* Внутренний отступ контейнера */
+}
+
+/* Стили для отдельного сообщения */
+.message-item {
+  border-bottom: 1px solid #ddd; /* Горизонтальная граница между сообщениями */
+  padding: 10px 0; /* Внутренний отступ внутри сообщения */
+}
+
+.message-item p {
+  margin: 5px 0; /* Внешние отступы для абзацев внутри сообщений */
+}
+
+.delete-button {
+  background-color: #dc3545; /* Цвет фона кнопки Delete */
+}
+
+.message-header {
+  display: flex; /* Размещаем никнейм и дату в одной строке */
+  justify-content: space-between; /* Равномерно распределяем элементы по строке */
+  align-items: center; /* Выравниваем элементы по вертикали */
+  margin-bottom: 5px; /* Отступ между заголовком сообщения и содержимым */
+}
+
+.form-container {
+  width: 30%; /* Ширина формы */
+  margin: 0 auto; /* Центрируем форму по горизонтали */
+  text-align: center; /* Центрируем текст внутри формы */
+  padding: 100px; /* Внутренний отступ формы */
+  border: 1px solid white /* Граница формы */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для формы (опционально) */
+}
+
+.form-container textarea {
+  width: 100%; /* Ширина текстового поля равна ширине формы */
+  height: 100px; /* Высота текстового поля */
+  margin-bottom: 10px; /* Отступ снизу для текстового поля */
+}
+
+.form-container button.create-message {
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  background-color: #007bff; /* Цвет фона кнопки */
+  color: #fff; /* Цвет текста кнопки */
+  border: none; /* Убираем границы кнопки */
+  cursor: pointer; /* Указатель мыши при наведении на кнопку */
+}
+
+ul {
+  list-style-type: none; /* Убираем маркеры списка */
+  padding: 0; /* Убираем внутренние отступы у списка */
+  text-align: center;
+}
+
+ul li {
+  margin-bottom: 5px; /* Отступ между элементами списка */
+}
+
+

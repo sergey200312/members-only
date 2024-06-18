@@ -1,15 +1,12 @@
-extends layout 
+extends layout
 
-block content 
-
-  form(post='/create' method='POST')
+block content
+  form(post='/create' method='POST' class='form-container')
     label(for='message') Message:
     textarea(name='message' placeholder='Message' type='text' value='')
-    button create message
+    button.create-message Create Message
 
-  if errors 
+  if errors
     ul
-      each error in errors 
+      each error in errors
         li #{error.msg}
-      
-    

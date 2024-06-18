@@ -1,23 +1,28 @@
-extends layout 
+extends layout
 
 block content
 
-  if (user && !user.isMember)
-    a(href='/join')
-        button join club
+  // Размещаем кнопки "Join Club" и "Create New Message" на одной строке
+  div(class='button-row')
+    if user && !user.isMember
+      a(href='/join')
+        button.join-club Join Club
         
-  if user
-      if user.isMember 
-        a(href='/create')
-          button create new message
-  if listMsg.length > 0 
-     each msg in listMsg 
-      p(class='grid all-center') #{msg.content} 
-      p #{user? user.username : 'unknown'}
-      p #{user? msg.formattedDate : 'unknown'}
-      if (user && user.isAdmin) 
-        form(action=`/delete/${msg._id}` method='POST')
-          button Delete
-  else
-    p No messages found
-    
+    if user && user.isMember
+      a(href='/create')
+        button.create-message Create New Message
+
+  // Контейнер для сообщений, центрируем по странице и добавляем границы
+  div(class='message-container')
+    if listMsg.length > 0
+      each msg in listMsg
+        div(class='message-item')
+          div(class='message-header')
+            p #{user ? user.username : 'Unknown'}
+            p #{user ? msg.formattedDate : 'Unknown'}
+          p(style='margin-top: 15px') #{msg.content}
+          if user && user.isAdmin
+            form(action=`/delete/${msg._id}`, method='POST')
+              button.delete-button Delete
+    else
+      p No messages found
