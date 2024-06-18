@@ -12,7 +12,7 @@ block content
           button create new message
   if listMsg.length > 0 
      each msg in listMsg 
-      p #{msg.content} 
+      p(class='grid all-center') #{msg.content} 
       p #{user? user.username : 'unknown'}
       p #{user? msg.formattedDate : 'unknown'}
       if (user && user.isAdmin) 
