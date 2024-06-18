@@ -11,6 +11,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 const bcrypt = require('bcryptjs');
 const compression = require("compression");
+const helmet = require("helmet");
 require('dotenv').config();
 
 var app = express();
@@ -18,6 +19,13 @@ app.use(compression());
 // Настройка шаблонизатора
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  }),
+);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
